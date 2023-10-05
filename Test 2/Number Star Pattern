@@ -1,0 +1,44 @@
+Print the following pattern for given number of rows.
+Input format :
+
+Line 1 : N (Total number of rows)
+
+Sample Input :
+   5
+Sample Output :
+1234554321
+1234**4321
+123****321
+12******21
+1********1
+
+Solution:
+
+import java.util.Scanner;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+
+        for (int i = 1; i <= N; i++) {
+            // Print the numbers in ascending order from 1 to N
+            for (int j = 1; j <= N - i + 1; j++) {
+                System.out.print(j);
+            }
+
+            // Print asterisks (*) for the remaining columns
+            for (int k = 1; k <= 2 * (i - 1); k++) {
+                System.out.print("*");
+            }
+
+            // Print the numbers in descending order from N to 1
+            for (int j = N - i + 1; j >= 1; j--) {
+                System.out.print(j);
+            }
+
+            System.out.println();
+        }
+    }
+}
