@@ -1,0 +1,54 @@
+An urn contains 8 balls : 4 red , 2 blue and 2 green. Now n balls are drawn out of the urn. Calculate the probability that out of n drawn balls exactly x balls are red.
+Find your answer multiplied by 100 and return the integer part.
+All required values for computation will be in integer range.
+x is always less than equal to 4 and x is always less than equal to n.
+Input format :
+Two spaced integers : n and x
+Output format :
+Integer part of (Probability * 100). 
+Sample Input 1 :
+3 1
+Sample Output 1:
+42
+
+Solution:
+
+public class Solution {
+    
+    public static int probability(int n,int x){
+                
+        /* Your class should be named Solution
+        * Don't write main().
+        * Don't read input, it is passed as function argument.
+        * Return output and don't print it.
+        * Taking input and printing output is handled automatically.
+        */
+        int redBalls = 4;
+    int nonRedBalls = 2 + 2; // 2 blue + 2 green
+
+    int totalWaysToChooseRedBalls = 1;
+    int totalWaysToChooseNonRedBalls = 1;
+
+    for (int i = 0; i < x; i++) {
+        totalWaysToChooseRedBalls *= (redBalls - i);
+        totalWaysToChooseRedBalls /= (i + 1);
+    }
+
+    for (int i = 0; i < (n - x); i++) {
+        totalWaysToChooseNonRedBalls *= (nonRedBalls - i);
+        totalWaysToChooseNonRedBalls /= (i + 1);
+    }
+
+    int totalWaysToChooseBalls = 1;
+    int totalBalls = redBalls + nonRedBalls;
+
+    for (int i = 0; i < n; i++) {
+        totalWaysToChooseBalls *= (totalBalls - i);
+        totalWaysToChooseBalls /= (i + 1);
+    }
+
+    int probability = (totalWaysToChooseRedBalls * totalWaysToChooseNonRedBalls * 100) / totalWaysToChooseBalls;
+
+    return probability;
+}
+}
